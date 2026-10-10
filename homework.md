@@ -1,4 +1,4 @@
-```md
+
 # Node.js & Express Homework
 
 ## Tasks
@@ -27,4 +27,7 @@
 - Order of the routes matter a lot.
 - Install postman app and make workspace/ collection > test API call
 - Write a logic to handle GET, POST, PUT, PATCH ,DELETE api calls and test them on Postman.
-
+- Explore routing and use of ?, +, (), \*, in the routes.
+- Use of regex in routes /a/, /.\*fly$/
+- Reading query params  in the routes
+- reading the dynamics routes
