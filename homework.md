@@ -1,4 +1,3 @@
-
 # Node.js & Express Homework
 
 ## Tasks
@@ -29,11 +28,14 @@
 - Write a logic to handle GET, POST, PUT, PATCH ,DELETE api calls and test them on Postman.
 - Explore routing and use of ?, +, (), \*, in the routes.
 - Use of regex in routes /a/, /.\*fly$/
-- Reading query params  in the routes
+- Reading query params in the routes
 - reading the dynamics routes
-
 
 - Multiple route handlers - Play with the Code
 - next()
 - next function and errors along with res.send()
 - app.use("/route", rH,rH2,rH3,rH4,rH5);
+- what is middleware.
+- How express JS basically handles request behind the scenes.
+- Write a dummy auth middleware for admin.
+- Write a dummy auth middlware for all user routes, excepts /user/login 
