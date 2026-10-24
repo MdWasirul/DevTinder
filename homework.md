@@ -38,4 +38,13 @@
 - what is middleware.
 - How express JS basically handles request behind the scenes.
 - Write a dummy auth middleware for admin.
-- Write a dummy auth middlware for all user routes, excepts /user/login 
+- Write a dummy auth middlware for all user routes, excepts /user/login
+
+- Create a free cluster on MongoDB official website.
+- Install mongoose library.
+- Connect your application to the Database. "Connection-url"/devTinder
+- Call the connectDB functions and connect to databases before starting application on 7777.
+- creating userSchema and user Model.
+- Create POST /signup API  to add data to database.
+- push some documents using API calls from postman.
+- Error Handling using try ,catch.
