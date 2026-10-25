@@ -55,4 +55,5 @@
 - User.findOne() with duplicate email Ids which object returned.
 - API - Get user by email
 - API - Feed api - GET /feed - get all the users from the database.
-- API - Get user by ID.
+- API - Get user by ID
+- create a delete user api and delete by userId

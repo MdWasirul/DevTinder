@@ -19,7 +19,7 @@ app.post("/signup", async (req, res) => {
 //get user by email
 app.get("/user", async (req, res) => {
     const userEmail = req.body.emailId;
-    console.log(userEmail);
+    // console.log(userEmail);
     try {
         const user = await User.findOne({ emailId: userEmail });
         if (!user) {
@@ -51,6 +51,19 @@ app.get("/feed", async (req, res) => {
 
     }
 })
+//Delete a user from the database.
+app.delete("/user", async (req, res) => {
+    const userId = req.body.userId;
+    try {
+        // const user = await User.findByIdAndDelete({ _id: userId }) //same below
+        const user = await User.findByIdAndDelete(userId);
+        res.send("User Delete Successfully");
+    } catch (err) {
+        res.status(400).send("Something went wrong!");
+    }
+
+})
+//Update data of the user.
 connectDB().then(() => {
     console.log("Database connection established");
     app.listen(3000, () => {
