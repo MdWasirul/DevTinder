@@ -45,7 +45,7 @@
 - Connect your application to the Database. "Connection-url"/devTinder
 - Call the connectDB functions and connect to databases before starting application on 7777.
 - creating userSchema and user Model.
-- Create POST /signup API  to add data to database.
+- Create POST /signup API to add data to database.
 - push some documents using API calls from postman.
 - Error Handling using try ,catch.
 
@@ -57,3 +57,8 @@
 - API - Feed api - GET /feed - get all the users from the database.
 - API - Get user by ID
 - create a delete user api and delete by userId
+- difference between PATCH and PUT.
+- API - Update a user.
+- Explore the Mongoose Documention for model methods.
+- What are the options in a Model.findOneAndUpdate() method, explore more about it.
+- API- update the user with email ID.
