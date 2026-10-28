@@ -48,7 +48,12 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     skill: {
-        type: [String]
+        type: [String],
+        required: true,
+        validate: {
+            validator: (skills) => skills.length >= 1 && skills.length <= 10,
+            message: "Skills must contain between 1 and 10 items.",
+        },
     }
 
 }, {
