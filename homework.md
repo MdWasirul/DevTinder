@@ -71,6 +71,6 @@
 - Add timestamps to the userSchema.
 - Add API level validation on patch and signup post api.
 - Data Sanitization Add api validation for each fields.
-- Install validator.js
+- Install validator.js.
 - Explore validator library functions and Use Validator func for password, email, photUrl
-- NEVER TRUST req.body  as it can inject malicious.
+- NEVER TRUST req.body  as it can inject malicious data also.

@@ -29,6 +29,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 8,
+        validate(value) {
+            if (!validator.isStrongPassword(value)) {
+                throw new Error("Enter a Strong Password: " + value);
+            }
+        }
     },
     age: {
         type: Number,
@@ -46,6 +51,12 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl: {
         type: String,
+        default:"https://mdwasirul-portfolio.vercel.app/portfolio.png",
+validate(value){
+    if(!validator.isURL(value)){
+        throw new Error("Photo URL is not valid: "+value);
+    }
+}
 
     },
     about: {
