@@ -3,7 +3,7 @@ const app = express();
 const connectDB = require("./config/database.js");
 app.use(express.json()); //convert json obj to JS object.
 const User = require("./models/user.js");
-const { validateSignUpData } = require("./utils/validation.js");
+const { validateSignUpData, validateLoginData } = require("./utils/validation.js");
 const bcrypt = require("bcrypt");
 
 
@@ -37,6 +37,26 @@ app.post("/signup", async (req, res) => {
         res.status(400).send("Error saving the user:" + err.message);
     }
 
+})
+//login api
+app.post("/login", async (req, res) => {
+    try {
+        const { emailId, password } = req.body;
+        validateLoginData(emailId,password);
+        const user = await User.findOne({ emailId: emailId });
+        // console.log(user);
+        if (!user) {
+            throw new Error("Invalid Credentials!");
+        }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (isPasswordValid) {
+            res.send("Login Successful!!!");
+        } else {
+            throw new Error("Invalid Credentials");
+        }
+    } catch (err) {
+        res.status(400).send("ERROR: " + err.message);
+    }
 })
 //get user by email
 app.get("/user", async (req, res) => {
