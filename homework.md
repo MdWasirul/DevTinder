@@ -74,3 +74,7 @@
 - Install validator.js.
 - Explore validator library functions and Use Validator func for password, email, photUrl
 - NEVER TRUST req.body  as it can inject malicious data also.
+
+- validate data in Signup API.
+- Install bcrypt package.
+- Create password hash using bcrypt.hash() & save the user in encrypted password.

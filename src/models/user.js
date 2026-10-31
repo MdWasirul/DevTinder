@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema({
             if (!validator.isEmail(value)) {
                 throw new Error("Invalid Email Address: " + value);
             }
-
         }
     },
     password: {
@@ -51,13 +50,12 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl: {
         type: String,
-        default:"https://mdwasirul-portfolio.vercel.app/portfolio.png",
-validate(value){
-    if(!validator.isURL(value)){
-        throw new Error("Photo URL is not valid: "+value);
-    }
-}
-
+        default: "https://mdwasirul-portfolio.vercel.app/portfolio.png",
+        validate(value) {
+            if (!validator.isURL(value)) {
+                throw new Error("Photo URL is not valid: " + value);
+            }
+        }
     },
     about: {
         type: String,
