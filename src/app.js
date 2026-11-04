@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
 const connectDB = require("./config/database.js");
-app.use(express.json()); //convert json obj to JS object.
 const User = require("./models/user.js");
 const { validateSignUpData, validateLoginData } = require("./utils/validation.js");
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const Jwt = require("jsonwebtoken");
 
+app.use(express.json()); //convert json obj to JS object.
+app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
     //add that JS obj on to .body
@@ -42,7 +45,7 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { emailId, password } = req.body;
-        validateLoginData(emailId,password);
+        validateLoginData(emailId, password);
         const user = await User.findOne({ emailId: emailId });
         // console.log(user);
         if (!user) {
@@ -50,6 +53,11 @@ app.post("/login", async (req, res) => {
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (isPasswordValid) {
+            //Create a token
+            const token = await Jwt.sign({ _id: user._id }, "DevTinder@#123");
+            console.log(token);
+            //Add the token to cookie and send the response back to user.
+            res.cookie("token", token);
             res.send("Login Successful!!!");
         } else {
             throw new Error("Invalid Credentials");
@@ -58,6 +66,30 @@ app.post("/login", async (req, res) => {
         res.status(400).send("ERROR: " + err.message);
     }
 })
+//profile api
+app.get("/profile", async (req, res) => {
+    try {
+
+        const cookies = req.cookies;
+        const { token } = cookies;
+        //validate my token
+        if (!token) {
+            throw new Error("Invalid token");
+        }
+        const decodeToken = await Jwt.verify(token, "DevTinder@#123"); //give payload i.e. user_id.
+        const { _id } = decodeToken;
+        console.log("LoggedIn user is: " + _id);
+        const user = await User.findById(_id);
+        if (!user) {
+            throw new Error("User does not exist.");
+        }
+        res.send(user);
+    } catch (err) {
+        res.status(400).send("ERROR: " + err.message);
+
+    }
+
+});
 //get user by email
 app.get("/user", async (req, res) => {
     const userEmail = req.body.emailId;
@@ -137,5 +169,5 @@ connectDB().then(() => {
         console.log("Server is Successfully listening on port no 3000....");
     });
 }).catch((err) => {
-    console.error("Database cannot be connected!!");
+    console.error("Database cannot be connected!!" + err.message);
 });

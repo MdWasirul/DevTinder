@@ -73,10 +73,17 @@
 - Data Sanitization Add api validation for each fields.
 - Install validator.js.
 - Explore validator library functions and Use Validator func for password, email, photUrl
-- NEVER TRUST req.body  as it can inject malicious data also.
+- NEVER TRUST req.body as it can inject malicious data also.
 
 - validate data in Signup API.
 - Install bcrypt package.
 - Create password hash using bcrypt.hash() & save the user in encrypted password.
 - Create Login API
 - Compare passwords and throw errors if email or password is invalid.
+
+- Install cookie-parser
+- just send a dummy cookie to user
+- Create GET /profile API and check if you get the cookie back.
+- Install jsonwebtoken
+- IN login API, after email and password validation , create a JWT token and send it to user in cookie
+- read the cookies inside Your Profile API and find the logged in user.
